@@ -39,9 +39,10 @@
 	<!--========================================
     CSS
     ===========================================-->
-	<!--3rd party plugins-->
-	<link href="{{ asset('assets/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('assets/lib/slick-carousel/slick/slick.css') }}" rel="stylesheet" type="text/css">
+	@section('csss')
+		<!--3rd party plugins-->
+		<link href="{{ asset('assets/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	@show
 	<!--custom icons for classified website-->
 	<link href="{{ asset('assets/css/adspoticons.css') }}" rel="stylesheet" type="text/css">
 	<!--main styles for template-->
@@ -81,11 +82,14 @@
 	@include('_partials.signInModal')
 	@include('_partials.signUpModal')
 
+	@section('scripts')
+		<!--========================================
+		Javascript
+		===========================================-->
+		<script src="{{ asset('assets/lib/jquery/dist/jquery.min.js') }}"></script>
+		<script src="{{ asset('assets/js/app.js') }}"></script>
+	@show
 
-	<!--========================================
-	Javascript
-	===========================================-->
-	<script src="{{ asset('assets/lib/jquery/dist/jquery.min.js') }}"></script>
-	<script src="{{ asset('assets/js/app.js') }}"></script>
+
 </body>
 </html>

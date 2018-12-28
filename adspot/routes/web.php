@@ -15,6 +15,9 @@ Route::get('/', function () {
 	return view('pages.home');
 });
 
+Route::get('ads', 'AdsController@index')->name('ads.index');
+Route::get('ads/{ad}', 'AdsController@show')->name('ads.show');
+
 
 Auth::routes( [ 'verify' => true ]);
 
