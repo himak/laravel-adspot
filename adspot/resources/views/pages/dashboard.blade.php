@@ -9,7 +9,7 @@
 			<div class="uzr-sidebar">
 				<div class="dp-widget">
 					<a href="#"><i class="fa fa-camera"></i> Change Photo</a>
-					<img src="assets/img/user-dp.jpg" alt="user">
+					<img src="{{ asset('assets/img/user-dp.jpg') }}" alt="user">
 				</div>
 				<div class="nt-tab-triggers">
 					<ul data-target="#tabs-dashboard-01">
@@ -70,7 +70,7 @@
 						<header>
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
-									<h4>Hello William!</h4>
+									<h4>Hello {{ $user->name }} !</h4>
 									<span>Last account activity: 1 hour ago</span>
 								</div>
 								<div class="col-xs-12 col-md-6">
@@ -161,7 +161,7 @@
 							<div class="call-to-action-2">
 								<div class="inner">
 									<p>You don't have any active Ads. <strong>Post an ad now!</strong></p>
-									<a href="#" class="btn btn-transparent">post an ad</a>
+									<a href="{{ route('ads.create') }}" class="btn btn-transparent">post an ad</a>
 								</div><!--text-widget-->
 							</div>
 
@@ -192,194 +192,46 @@
 						<div class="inner">
 							<div class="items-list-md style2 pad-top-0">
 								<div class="items-list">
-									<article class="item-spot">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad1.png&quot;);">
-											<img src="assets/img/items/ad1.png" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
 
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select002" type="checkbox">
-															<label for="select002"></label>
-														</div>
-													</li>
-												</ul>
+									@forelse( $ads as $ad)
+
+										<article class="item-spot @if ($ad->featured) {{ 'featured' }} @endif">
+											<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad1.png&quot;);">
+												<img src="{{ asset('assets/img/items/ad1.png') }}" alt="dummy data">
+											</a>
+											<div class="item-content">
+												<header>
+													<h6><a href="{{ route('ads.show', ['ad' => $ad->id]) }}">{{ $ad->title }}</a></h6>
+													<ul class="item-info">
+														<li><i class="fa fa-clock-o"></i>From: {{ $ad->created_at }} </li>
+														<li><i class="fa fa-eye"></i>4,226 </li>
+
+													</ul>
+												</header>
+												<div class="price-tag">{{ $ad->price }} €</div>
+												<div class="item-admin-actions text-center">
+													<ul>
+														<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
+														<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
+														<li><a href="#"><i class="adicon-activate"></i></a></li>
+														<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
+														<li>
+															<div class="custom-check">
+																<input id="select002" type="checkbox">
+																<label for="select002"></label>
+															</div>
+														</li>
+													</ul>
+												</div>
+
 											</div>
+										</article>
 
-										</div>
-									</article>
-									<article class="item-spot item-moderated">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad2.jpg&quot;);">
-											<img src="assets/img/items/ad2.jpg" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
+									@empty
 
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select004" type="checkbox">
-															<label for="select004"></label>
-														</div>
-													</li>
-												</ul>
-											</div>
+										<p>You got not ads ! Please <a href="{{ route('ads.create') }}">add now</a></p>
 
-										</div>
-									</article>
-									<article class="item-spot item-moderated">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad2.jpg&quot;);">
-											<img src="assets/img/items/ad2.jpg" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
-
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select003" type="checkbox">
-															<label for="select003"></label>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-										</div>
-									</article>
-									<article class="item-spot">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad4.jpg&quot;);">
-											<img src="assets/img/items/ad4.jpg" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
-
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select002444" type="checkbox">
-															<label for="select002444"></label>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-										</div>
-									</article>
-
-									<article class="item-spot">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad5.jpg&quot;);">
-											<img src="assets/img/items/ad5.jpg" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
-
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select0024445" type="checkbox">
-															<label for="select0024445"></label>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</article>
-
-									<article class="item-spot">
-										<a href="#" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad6.jpg&quot;);">
-											<img src="assets/img/items/ad6.jpg" alt="dummy data">
-										</a>
-										<div class="item-content">
-											<header>
-												<h6><a href="single.html">Canon SX Powershot A Great D-SLR</a></h6>
-												<ul class="item-info">
-													<li><i class="fa fa-clock-o"></i>From: 26 Oct - To: 23 Nov </li>
-													<li><i class="fa fa-eye"></i>4,226 </li>
-
-												</ul>
-											</header>
-											<div class="price-tag">$229.9</div>
-											<div class="item-admin-actions text-center">
-												<ul>
-													<li><a class="tc" href="#"><i class="adicon-eye"></i></a></li>
-													<li><a class="tc6-hover" href="#"><i class="adicon-edit"></i></a></li>
-													<li><a href="#"><i class="adicon-activate"></i></a></li>
-													<li><a class="tc12-hover" href="#"><i class="adicon-recyclebin"></i></a></li>
-													<li>
-														<div class="custom-check">
-															<input id="select00244456" type="checkbox">
-															<label for="select00244456"></label>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-										</div>
-									</article>
-
+									@endforelse
 
 								</div>
 							</div>
@@ -1209,6 +1061,37 @@
 
 							<div class="basic-card">
 								<header>
+									<h5>Contact data</h5>
+								</header>
+								<div class="inner">
+									<div class="row">
+										<div class="col-xs-12 col-md-6">
+											<form action="/">
+												<div class="field-block">
+													<div class="labeled-input">
+														<label>E-mail</label>
+														<input title="e-mail here" type="text" value="{{ $user->email }}">
+													</div>
+												</div>
+												<div class="field-block">
+													<div class="labeled-input">
+														<label>Name</label>
+														<input title="name here" type="text" value="{{ $user->name }}">
+													</div>
+												</div>
+												<div class="field-block">
+													<button class="btn btn-small btn-green">
+														save
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div><!--basic-card-->
+
+							<div class="basic-card">
+								<header>
 									<h5>Location Details</h5>
 								</header>
 								<div class="inner">
@@ -1335,7 +1218,7 @@
 												<div class="field-block">
 													<div class="labeled-input">
 														<label>Enter New Email</label>
-														<input title="title here" type="email">
+														<input title="title here" type="email" value="{{ $user->email }}">
 													</div>
 												</div>
 											</div>

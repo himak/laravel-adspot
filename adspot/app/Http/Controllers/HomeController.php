@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard');
+    	$user = \Auth::user();
+
+    	$ads = DB::table('ads')->where('user_id', $user->id)->get();
+
+	    return view('pages.dashboard')
+	        ->withUser( $user )
+	        ->withAds( $ads );
     }
 }

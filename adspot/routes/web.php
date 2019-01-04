@@ -15,10 +15,18 @@ Route::get('/', function () {
 	return view('pages.home');
 });
 
-Route::get('ads', 'AdsController@index')->name('ads.index');
-Route::get('ads/{ad}', 'AdsController@show')->name('ads.show');
 
+Route::get('ads', 'AdController@index')->name('ads.index');
+Route::get('/ads/{id}', 'AdController@show')->name('ads.show')->where('id', '[0-9]+');
+Route::get('/ads/create', 'AdController@create')->name('ads.create')->middleware('verified');
+Route::post('/ads', 'AdController@store')->name('ads.store');
+
+
+Route::get('/user/{id}', 'UserController@show');
 
 Auth::routes( [ 'verify' => true ]);
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('verified');
+
+
+

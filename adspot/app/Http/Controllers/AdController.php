@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
+//use DemeterChain\Ad;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
-class AdsController extends Controller
+class AdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,11 @@ class AdsController extends Controller
      */
     public function index()
     {
-	    //$ads = Ad::all();
-	    $ads = DB::table('ads')->latest()->get();
+	    $ads = Ad::all()->sortByDesc('created_at');
+
+	    //return $ads;
+
+	    //$ads = DB::table('ads')->latest()->get();
 
     	return view('pages.listing', compact('ads'));
     }
@@ -28,7 +33,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        //
+	    return view('pages.create');
     }
 
     /**
@@ -39,31 +44,53 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+	    // Validate the request data
+	    $this->validate( request(), [
+		    'title' => 'required',
+		    'price' => 'required',
+		    'description' => 'required'
+	    ]);
+
+
+        // Create a new ad using the request data
+        //$ad = new Ad;
+
+        // Save it to do database
+	    //$ad->title = request('title');
+	    //$ad->price = request('price');
+	    //$ad->description = request('description');
+		//
+	    //$ad->save();
+
+	    Ad::create([
+		    'title' => request('title'),
+		    'price' => request('price'),
+		    'description' => request('description')
+	    ]);
+
+	    // And the redirect to the listing of ads page
+	    return redirect('/ads');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ad  $ad
+     * @param  \App\Ad  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Ad $ad)
-    {
-	    //return view('pages.single',  ['ad' => Ad::all()->find($ad) ] );
+	public function show($id) {
 
-	    $ad = Ad::all()->find($ad);
+		$ad = Ad::findOrFail($id);
 
-	    if ($ad) {
-	        return view('pages.single', compact('ad'));
-	    }
-	    else {
+		$ad->user;
 
-		    return redirect()->route('ads.index');
-	    }
+		//$ad = DB::selectOne( 'select * from ads where id = :id', ['id' => $id ] );
 
+		return view('pages.single', compact('ad') );
 
-    }
+	}
 
     /**
      * Show the form for editing the specified resource.

@@ -175,9 +175,9 @@
 		</div>
 		<div id="items-listing-area" class="items-list">
 
-			@foreach($ads as $ad)
+			@forelse($ads as $ad)
 
-				<article class="item-spot @if ($ad->featured) {{ 'featured' }} @endif">
+				<article class="item-spot @if ($ad->featured) {{ 'featured' }} @endif" id="ad-{{ $ad->id }}">
 					<a href="{{ route('ads.show', ['ad' => $ad->id]) }}" class="imgAsBg" style="background-image: url(&quot;assets/img/items/ad2.jpg&quot;);">
 						<img src="assets/img/items/ad2.jpg" alt="dummy data">
 					</a>
@@ -192,7 +192,7 @@
 							</div>
 							<ul class="item-info">
 								<li><i class="fa fa-map-marker"></i><a href="#">Melbourne</a></li>
-								<li><i class="fa fa-clock-o"></i>{{ date( 'd.m.Y', strtotime( $ad->created_at ) )   }}</li>
+								<li><i class="fa fa-clock-o"></i>{{ $ad->created_at }}</li>
 							</ul>
 						</header>
 						<div class="item-actions text-center">
@@ -212,14 +212,18 @@
 						</div>
 						<div class="inner">
 							<p>
-								{{ str_limit($ad->description, 80) }}
+								{{ $ad->description }}
 							</p>
-							<a class="view-item" href="{{ route('ads.show', ['ad' => $ad->id]) }}">view ad</a>
+							<a class="view-item" href="{{ route( 'ads.show', [ $ad->id ] ) }}">view ad</a>
 						</div>
 					</div>
 				</article>
 
-			@endforeach
+			@empty
+
+				<p>We got nothing !! Please add some ads.</p>
+
+			@endforelse
 
 		</div>
 

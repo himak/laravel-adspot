@@ -42,7 +42,8 @@
 					<ul class="info-list">
 						<li><i class="fa fa-map-marker"></i><a href="#">Melbourne</a></li>
 						<li><i class="fa fa-clock-o"></i>
-							{{ $ad->created_at->format('d.m.Y') }}
+							{{--{{ date( 'd.m.Y', strtotime( $ad->created_at ) ) }}--}}
+							{{ $ad->created_at }}
 						</li>
 						<li><i class="fa fa-bookmark"></i>ID: 13030978</li>
 					</ul>
@@ -127,7 +128,7 @@
 
 				<div class="user-widget text-center">
 					<img src="https://picsum.photos/77/77/?image=1005" alt="asd">
-					<h4><a href="#">William Martin</a></h4>
+					<h4><a href="#">{{ $ad->user->name }}</a></h4>
 					<div>Member Since 2013</div>
 					<a href="#" class="link">More Ads</a>
 					<ul class="clearfix">

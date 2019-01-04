@@ -36,19 +36,6 @@
 					</div>
 				</li>
 			@endguest
-			{{--<li><a href="create.html">Create an Ad</a></li>--}}
-			{{--<li><a href="dashboard.html">Dashboard</a></li>--}}
-			{{--<li><a href="listing.html">Ads Listing Page</a></li>--}}
-			{{--<li><a href="how-adspot-works.html">How this works</a></li>--}}
-			{{--<li><a href="about.html">About us</a></li>--}}
-			{{--<li><a href="contact.html">Contact us</a></li>--}}
-			{{--<li><a href="blog.html">Blog</a></li>--}}
-			{{--<li><a href="blog-single.html">Blog Single</a></li>--}}
-			{{--<li><a href="shop-index.html">Shop Page</a></li>--}}
-			{{--<li><a href="shop-listing.html">Shop Archive</a></li>--}}
-			{{--<li><a href="cart.html">Cart Page</a></li>--}}
-			{{--<li><a href="checkout.html">Checkout Page</a></li>--}}
-			{{--<li><a href="elements-shortcodes.html">Checkout Page</a></li>--}}
 		</ul>
 	</nav>
 </div>

@@ -50,10 +50,10 @@
 				<div class="field-block">
 					<div class="labeled-input">
 						<label>{{ __('Name') }}*</label>
-						<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+						<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' error' : ' valid' }}" name="name" value="{{ old('name') }}" required autofocus>
 
 						@if ($errors->has('name'))
-							<span class="invalid-feedback" role="alert">
+							<span class="valid-block" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
 						@endif
@@ -62,10 +62,10 @@
 				<div class="field-block">
 					<div class="labeled-input">
 						<label>{{ __('E-Mail Address') }}*</label>
-						<input id="email" title="Enter your email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+						<input id="email" title="Enter your email" type="email" class="form-control{{ $errors->has('email') ? ' error' : ' valid' }}" name="email" value="{{ old('email') }}" required>
 
 						@if ($errors->has('email'))
-							<span class="invalid-feedback" role="alert">
+							<span class="valid-block" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
 						@endif
@@ -80,19 +80,24 @@
 				<div class="field-block">
 					<div class="labeled-input">
 						<label>{{ __('Password') }}*</label>
-						<input id="password" title="Password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+						<input id="password" title="Password" type="password" class="form-control{{ $errors->has('password') ? ' error' : ' valid' }}" name="password" required>
 
 						@if ($errors->has('password'))
-							<span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+							<span class="valid-block" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
 						@endif
 					</div>
 				</div>
 				<div class="field-block">
 					<div class="labeled-input">
 						<label>{{ __('Confirm Password') }}*</label>
-						<input id="password-confirm" title="Confirm Password" type="password" class="form-control" name="password_confirmation" required>
+						<input id="password-confirm" title="Confirm Password" type="password" class="form-control {{ $errors->has('password') ? ' error' : ' valid' }}" name="password_confirmation" required>
+						@if ($errors->has('password'))
+							<span class="valid-block" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+						@endif
 					</div>
 				</div>
 				<button type="submit" class="btn btn-md btn-green block-element">{{ __('Register') }}</button>

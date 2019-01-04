@@ -57,7 +57,7 @@
 							<div class="field-block">
 								<div class="labeled-input">
 									<label for="email">{{ __('E-Mail Address') }}</label>
-									<input id="email" title="Enter e-mail address" minlength="3" type="email" class="form-control{{ $errors->has('email') ? ' error' : ' valid' }}" name="email" value="{{ old('email') }}" required autofocus>
+									<input id="email" title="Enter e-mail address" minlength="3" type="email" class="form-control{{ $errors->has('email') ? ' error' : ' valid' }}" name="email" value="{{ old('email') }}" autofocus>
 
 									@if ($errors->has('email'))
 										<span class="valid-block" role="alert">
@@ -69,7 +69,7 @@
 							<div class="field-block">
 								<div class="labeled-input">
 									<label for="password">{{ __('Password') }}</label>
-									<input id="password" title="Enter Password"  type="password" class="form-control{{ $errors->has('password') ? ' error' : ' valid' }}" name="password" required>
+									<input id="password" title="Enter Password"  type="password" class="form-control{{ $errors->has('password') ? ' error' : ' valid' }}" name="password">
 
 									@if ($errors->has('password'))
 										<span class="valid-block" role="alert">
@@ -100,6 +100,11 @@
 							<button class="btn btn-md btn-green block-element" type="submit">{{ __('Login') }}</button>
 
 						</form>
+
+
+						<p class="text-center">Don't have an account?</p>
+						<p class="text-center"><a href="{{ route('register') }}">Register here FREE</a></p>
+
 					</div>
 
 				</div>
